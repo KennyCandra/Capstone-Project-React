@@ -33,7 +33,7 @@ function Highlights () {
     ];
 
     return (
-        <main>
+        <main className="section highlights">
             <div className ='highlightsHeader'>
                 <h1>The Week Specials</h1>
                 <button className ="BTN highlightBTN">Online Menu</button>
