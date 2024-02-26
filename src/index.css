@@ -341,3 +341,10 @@ ul li {
 ul {
   padding: 0;
 }
+
+.FormInput {
+  display: grid;
+  /* max-width: 200px; */
+  gap: 20px;
+  justify-content: center;
+}
