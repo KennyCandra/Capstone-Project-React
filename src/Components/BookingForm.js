@@ -1,30 +1,43 @@
 import { useState } from "react"
-function BookingForm () {
+function BookingForm ( {availableTime} , {dispatch}) {
 
     const [date,setDate] = useState('')
     const [number,setNumber] = useState('')
     const [occasion,setOccasion] = useState('')
-    const [time,setTime] = useState('')
+
+    const decrement = (e) => {
+        e.preventDefault()
+        if (number <= 0 ){
+        setNumber(0)
+        } else{
+        setNumber(number-1)
+        }
+    }
+    
+    const increment = (e) => {
+        e.preventDefault()
+        if (number >= 10){
+            setNumber(10)
+        } else {
+        setNumber(number+1)
+        }
+    }
 
     function handleSubmit (e) {
         e.preventDefault()
         alert(`your Resrevation has been successfully completed`)
     }
 
-    const availableTimes = [
-        {hour : "17:00"},
-        {hour : "18:00"},
-        {hour : "19:00"},
-        {hour : "20:00"},
-        {hour : "21:00"},
-        {hour : "22:00"}
-    ]
 
-    const avaliableOptions = availableTimes.map((time , index) => {
+
+    const avaliableOptions = availableTime.map((time , index) => {
         return (
             <option key={index}>{time.hour}</option>
         )
     })
+
+
+
     return (
         <>
         <form className="FormInput" onSubmit={handleSubmit}>
@@ -35,23 +48,20 @@ function BookingForm () {
         value={date}
         onChange={(e) => setDate(e.target.value)}>
         </input>
-    <label 
+    <label
         for="res-time"
-        value={time}
-        onChange={(e) => setTime(e.target.value)}
+        value={availableTime}
+        onChange={() => {
+            dispatch(availableTime)
+        }}
         >Choose time</label>
     <select id="res-time ">
        {avaliableOptions}
     </select>
     <label for="guests">Number of guests</label>
-    <input
-        value={number}
-        placeholder="1"
-        min="1"
-        max="10"
-        id="guests"
-        onChange={(e) => setNumber(e.target.value)}
-        ></input>
+    <label>{number}</label>
+    <button onClick={(e) => {decrement(e)}}>-</button>
+    <button onClick={(e) => {increment(e)}}>+</button>
     <label
         value={occasion}
         onChange={(e)=> setOccasion(e.target.value)}
