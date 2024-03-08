@@ -59,6 +59,7 @@ function BookingForm({ availableTime, dispatch }) {
           name="user"
           id="res-name"
           type="text"
+          placeholder="your name"
           {...formik.getFieldProps("user")}
           style={{border: formik.errors.user ? "1px solid red" : null}}
         />
@@ -87,7 +88,7 @@ function BookingForm({ availableTime, dispatch }) {
           value={date}
           onChange={(e) => setDate(e.target.value)}
         />
-
+      
         <label htmlFor="res-time">Choose time</label>
         <select id="res-time" onChange={() => dispatch(availableTime)}>
           {availableOptions}
@@ -116,3 +117,5 @@ function BookingForm({ availableTime, dispatch }) {
 }
 
 export default BookingForm;
+
+

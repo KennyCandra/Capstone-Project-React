@@ -1,22 +1,27 @@
+import { Card, CardBody, CardFooter, CardHeader, Grid, HStack, Heading, Image,Text, VStack } from "@chakra-ui/react";
 import placeHolderImage from "../assets/photos/place holder.jpg"
 
 function Testiominals () {
     const card = () =>  { return(
-        <div className="Test-card">
-            <div className='rating'>
-            <h3>Rating</h3>
-        </div>
-        <div className='Test-info'>
-        <img src={placeHolderImage}
-            alt="Place Holder"
-            width="47px"
-            height="46px"></img>
-            <h3>Name</h3>
-        </div>
-        <div className='review'>
-        <p>Review Text</p>
-        </div>
-    </div>
+            <Card p={0} alignItems={'center'}
+            justifyContent={'flex-end'}
+            w={'200px'}
+            h={'175px'}>
+                    <CardHeader >
+                        <Heading size={'h6'}>Rating</Heading>
+                    </CardHeader>
+                    <CardBody pt={0}>
+                        <HStack justifyContent={'flex-start'}>
+                            <Image src={placeHolderImage} w={'20%'} />
+                            <Heading size={'h6'} w={'50%'}>Name</Heading>
+                        </HStack>
+                        <CardFooter p={0} pt={'10px'}>
+                            <Text>
+                                Review
+                            </Text>
+                        </CardFooter>
+                    </CardBody>
+            </Card>
     )}
 
     const cardComponents = Array.from({ length: 4 }, (_, index) => (
@@ -25,14 +30,15 @@ function Testiominals () {
         </div>
     ));
     return (
-        <div className="back-ground">
-            <div className='Test-Name'>
-                <h1 id='testiominals'>Testiominals</h1>
-            </div>
-            <div className="Test-container">
-                 {cardComponents}
-            </div>
-        </div>
+        <VStack backgroundColor={'#D9D9D9'} p={'20px'}>
+            <Heading as={'h1'}>Testiominals</Heading>
+            <Grid
+                templateColumns={['repeat(2,1fr)','repeat(2,1fr)','repeat(2,1fr)','repeat(4,1fr)']}
+                gap={'20px'}
+                >
+                    {cardComponents}
+            </Grid>
+        </VStack>
     )
 }
 

@@ -2,6 +2,7 @@ import greekSalad from "../assets/photos/greek salad.jpg"
 import lemonDessert from "../assets/photos/lemon dessert.jpg"
 import bruchetta from "../assets/photos/bruchetta.svg"
 import deleivery from "../assets/photos/deleivery.png"
+import { Button, Card, HStack, Heading, VStack,Image, CardBody,Text, CardFooter, useMediaQuery, Flex, Grid } from "@chakra-ui/react";
 
 function Highlights () {
 
@@ -32,43 +33,67 @@ function Highlights () {
         }
     ];
 
-    return (
-        <main className="section highlights">
-            <div className ='highlightsHeader'>
-                <h1>The Week Specials</h1>
-                <button className ="BTN highlightBTN">Online Menu</button>
-            </div>
-            <div className="Container">
-            {highLights.map((item, index) => (
-                    <div key={index} className="Card">
-                        <div className='cardImgDiv'>
-                            <img src={item.img}
-                                alt={item.heading}
-                                width="264px"
-                                height="185px"
-                                className="cardImg"
-                            />
-                        </div>
-                        <div className='FoodInfo'>
-                            <h3>{item.heading}</h3>
-                            <p><b>{item.price}</b></p>
-                        </div>
-                        <div className='paragraph'>
-                            <p className='foodDes'>{item.description}</p>
-                        </div>
-                        <div className='deleivery'>
-                            <h4>{item.delivery}</h4>
-                            <img src={item.imgDelivery}
-                                alt="Delivery"
-                                width="17px"
-                                height="10px"
-                            />
-                        </div>
-                    </div>
-                ))}
+    const [isLargerThan768] = useMediaQuery('(min-width: 768px)')
 
-            </div>
-        </main>
+
+    return (
+        <VStack
+            maxW={'848px'}
+            mx={'auto'}
+            className="section"
+            alignItems={'center'}
+            backgroundColor={'white'}>
+            <HStack 
+                    justifyContent={'center'}
+                    w={'100%'}
+                    >
+                <Heading
+                    size={'md'}
+                    mr={!isLargerThan768 ? '5px' : "auto"}
+                >The Week Specials</Heading>
+                <Button
+                    ml={!isLargerThan768 ? '5px' : "auto"}
+                    backgroundColor={'yellow'}>Online Menu
+                </Button>
+            </HStack>
+            <Grid
+                    templateColumns={['repeat(1,1fr)','repeat(1,1fr)','repeat(2,1fr)','repeat(3,1fr)']}
+                    gap={'15px'}
+                    mb={'20px'}
+                >
+                {highLights.map((item,index) => (
+                    <Card key={index}
+                        borderRadius={'16px'}
+                        p={0}
+                        maxW={'xs'}
+                        cursor={'pointer'}
+                        backgroundColor={'#EDEFEE'}
+                    >
+                        <Image src={item.img}
+                            objectFit={'inherit'}
+                            borderTopRadius={'16px'}
+                            h={'185px'}
+                            border={'1px solid black'}
+                        />
+                        <CardBody>
+                            <HStack justifyContent={'space-between'}>
+                                <Heading size={'sm'}>{item.heading}</Heading>
+                                <Heading size={'sm'}>{item.price}</Heading>
+                            </HStack>
+                            <Text size={'sm'} pt={'20px'}>{item.description}</Text>
+                        </CardBody>
+                        <CardFooter>
+                            <HStack alignContent={'flex-end'}>
+                                <Heading as='h6'size={'sm'} >Order a delivery</Heading>
+                                <Image src={item.imgDelivery}
+                                    w={'17px'}
+                                    h={'10px'}  />
+                            </HStack>
+                        </CardFooter>
+                    </Card>
+                ))}
+            </Grid>
+        </VStack>
     )
 }
 
