@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import Chef from '../assets/photos/restauranfood.jpg';
 import { Image, Stack, Text, Heading, Button, VStack, Box, useMediaQuery } from '@chakra-ui/react';
 

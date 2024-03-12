@@ -22,7 +22,7 @@ const [availableTime , dispatch] = useReducer(updateTimes,initializedTime)
 
     return (
         <>
-        <BookingForm availableTime={availableTime} dispatch={dispatch}/>
+            <BookingForm availableTime={availableTime} dispatch={dispatch}/>
     </>
 
     )

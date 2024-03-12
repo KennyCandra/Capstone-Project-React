@@ -1,26 +1,29 @@
 import logo from "../assets/photos/logo.svg";
-import { Link } from 'react-router-dom';
+import { Link, NavLink, useLocation } from 'react-router-dom';
 import { HStack, Flex, IconButton } from "@chakra-ui/react";
 import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
 import { useState } from "react";
 
 function Navigation() {
   const [display, setDisplay] = useState('none');
+  const location = useLocation()
 
+  const getActiveClassName = (path) => {
+    return location.path === path ? 'active' : '';
+  }
   return (
-    <HStack justify='center' mb={'30px'}>
+    <HStack justify='center' mb={'30px'} spacing={'5%'}>
       <Flex pt={'10px'}>
         <img src={logo} alt='logo' className="logo" width={"148px"} height={"40px"} />
       </Flex>
       <Flex display={['none' , 'none' , 'flex' , 'flex']}
         >
         <ul className="Nav">
-          <li><Link to="/">Home</Link></li>
-          <li><Link to='/about'>About</Link></li>
-          <li><Link to='/menu'>Menu</Link></li>
-          <li><Link to='/bookingpage'>Reservation</Link></li>
-          <li><Link to='/order-online'>Order Online</Link></li>
-          <li><Link to='/login'>Login</Link></li>
+          <li><NavLink to="/" className={getActiveClassName('/')}>Home</NavLink></li>
+          <li><NavLink to='/about' className={getActiveClassName('/about')}>About</NavLink></li>
+          <li><NavLink to='/menu' className={getActiveClassName('/menu')}>Menu</NavLink></li>
+          <li><NavLink to='/bookingpage' className={getActiveClassName('/bookingpage')}>Reservation</NavLink></li>
+          <li><NavLink to='/login' className={getActiveClassName('/login')}>Login</NavLink></li>
         </ul>
       </Flex>
       <IconButton
@@ -63,12 +66,11 @@ function Navigation() {
           />
         </Flex>
         <Flex   flexDir='column'>
-              <Link to='/' fontStyle='none'>Home</Link>
-              <Link to='/about'>About</Link>
-              <Link to='/menu'>Menu</Link>
-              <Link to='/bookingpage'>Reservation</Link>
-              <Link to='/order-online'>Order Online</Link>
-              <Link to='/login'>Login</Link>
+          <li><NavLink to="/" className={getActiveClassName('/')}>Home</NavLink></li>
+          <li><NavLink to='/about' className={getActiveClassName('/about')}>About</NavLink></li>
+          <li><NavLink to='/menu' className={getActiveClassName('/menu')}>Menu</NavLink></li>
+          <li><NavLink to='/bookingpage' className={getActiveClassName('/bookingpage')}>Reservation</NavLink></li>
+          <li><NavLink to='/login' className={getActiveClassName('/login')}>Login</NavLink></li>
         </Flex>
         <Flex>
               <img src={logo} alt='logo' className="logo" width={"148px"} height={"40px"} />
