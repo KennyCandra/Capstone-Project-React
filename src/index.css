@@ -41,8 +41,12 @@ code {
 
 .active {
   background-color: #495E57;
-  border-radius: 10%;
   color: white;
+}
+
+.activeSection {
+  text-decoration: underline;
+  color: grey;
 }
 
 .activeMobile {
@@ -70,4 +74,11 @@ li a{
   display: grid;
   gap: 20px;
   justify-content: center;
+}
+
+
+
+.item-container.active {
+  background-color: #495E57;
+  color: white;
 }

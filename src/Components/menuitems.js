@@ -1,50 +1,90 @@
-import greekSalad from "../assets/photos/greek salad.jpg"
-import lemonDessert from "../assets/photos/lemon dessert.jpg"
-import bruchetta from "../assets/photos/bruchetta.svg"
-import MenuCard from "./MenuCard"
-import { Grid, Heading, VStack } from "@chakra-ui/react"
+import {Heading, VStack, HStack, Text, Box, Card, CardBody, Image,Button} from "@chakra-ui/react"
+import { useContext, useEffect, useState } from "react"
+import data from "../assets/data/data.json"
+import { ContextApp } from "./context/Context"
 
-const menu = [
-    {
-        img: greekSalad,
-        heading: 'Greek Salad',
-        price: '12.99$',
-        description: 'The famous Greek salad of crispy lettuce, peppers, olives and our Chicago style feta cheese, garnished with crunchy garlic and rosemary croutons.',
-        delivery: 'Order a Delivery',
-    },
-    {
-        img: lemonDessert,
-        heading: 'Lemon Dessert',
-        price: '5.99$',
-        description: 'Our Bruschetta is made from grilled bread that has been smeared with garlic and seasoned with salt and olive oil.',
-        delivery: 'Order a Delivery',
-    },
-    {
-        img: bruchetta,
-        heading: 'Bruchetta',
-        price: '5.00$',
-        description: 'This comes straight from grandma’s recipe book, every last ingredient has been sourced and is as authentic as can be imagined.',
-        delivery: 'Order a Delivery',
-    }
-];
+let menu = Object.getOwnPropertyNames(data)
+
+
 function Menuitems () {
+
+    const [selected , setSelected] = useState('0')
+    const[selectedDish , setSelectedDish] =  useState('pizza')
+    const {addToCart , cartItem} = useContext(ContextApp)
+    const [id , setId] = useState()
+
+    // useEffect(()=> {
+    //     data[selectedDish].forEach(item => {
+    //         item.id = item.id + item.name[0] + item.name[1]
+    //     });
+    // })
+
+    const handleClick = (item , key) => {
+    setSelectedDish(item)
+    setSelected(key)
+}
     return  (
         <>
         <VStack>
-        <Heading as={'h1'} colorScheme="black"
-        justifyContent={'center'}>Menu</Heading>
-        <Grid 
-        // padding={'20px'}
-        >
-        {menu.map((items) => (
-            <MenuCard
-            title={items.heading}
-            img = {items.img}
-            price = {items.price}
-            description ={items.description}
-            />
-            ))}
-        </Grid>
+            <Heading
+                as={'h1'} colorScheme="black"
+                justifyContent={'center'}>
+                    Menu
+            </Heading>
+            <HStack gap={'2rem'}>
+                {menu.map((item , key) => (
+                    <Box borderRadius={'50px'}
+                        border={'2px solid grey'}
+                        key={key}
+                        padding={'0.5rem'}
+                        cursor={'pointer'}
+                        className={selected === key ? 'item-container active' : ''}
+                        onClick={() => handleClick(item , key)}>
+                    <Text fontWeight={'bold'} textTransform={"capitalize"} key={key}>{item}</Text>
+                    </Box>
+                ))}
+            </HStack>
+             <HStack>
+                <Card>
+                    <CardBody>
+                        <HStack
+                        gap={'2rem'}>
+                            {data[selectedDish].map((dish) => (
+                                <>
+                                <Box boxShadow={'lg'}>
+                                    <Card
+                                    border={'2px solid black'}
+                                    borderRadius={'25px'}
+                                    cursor={'pointer'}
+                                    h={'350px'}
+                                    w={'200px'}>
+                                        <Image
+                                            src={dish.image}
+                                            width={'200px'}
+                                            height={'200px'}
+                                            />
+                                        <CardBody position={'relative'}>
+                                            <Text
+                                                as='h2'
+                                                fontWeight={'bold'}>{dish.name}</Text>
+                                            <Text as={'h6'} color={'grey'} fontSize={'15px'}>
+                                                {dish.description}
+                                            </Text>
+                                            <HStack position={'absolute'}>
+                                                <Button background={'yellow'} onClick={()=> addToCart(dish)} >Add To Cart</Button>
+                                                <Text as={'h1'} fontWeight={'bold'}>
+                                                    {dish.price}$
+                                                </Text>
+                                            </HStack>
+                                        </CardBody>
+                                    </Card>
+                                </Box>
+                                </>
+                            ))}
+                        </HStack>
+                    </CardBody>
+                </Card>
+             </HStack>
         </VStack>
         </>
     )

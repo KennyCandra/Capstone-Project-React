@@ -1,8 +1,20 @@
 import { Card, CardBody, CardFooter, CardHeader, Grid, HStack, Heading, Image,Text, VStack } from "@chakra-ui/react";
-import placeHolderImage from "../assets/photos/place holder.jpg"
+import { useEffect, useState } from "react";
 
 function Testiominals () {
-    const card = () =>  { return(
+    const [user , setUser] = useState([])
+
+    const fetchData = () => {
+        fetch('https://randomuser.me/api/?results=1')
+        .then((response) => response.json())
+        .then((data) => setUser(data.results))
+    }
+
+    useEffect(() => {
+        fetchData()
+    },[])
+
+    const card = () =>  { return Object.keys(user).length > 0 ? (
             <Card p={0} alignItems={'center'}
             justifyContent={'flex-end'}
             w={'200px'}
@@ -12,17 +24,19 @@ function Testiominals () {
                     </CardHeader>
                     <CardBody pt={0}>
                         <HStack justifyContent={'flex-start'}>
-                            <Image src={placeHolderImage} w={'20%'} />
-                            <Heading size={'h6'} w={'50%'}>Name</Heading>
+                            <Image src={user[0].picture.large} w={'20%'} />
+                            <Heading size={'h6'} w={'50%'}>{user[0].name.first}</Heading>
                         </HStack>
                         <CardFooter p={0} pt={'10px'}>
-                            <Text>
-                                Review
+                            <Text fontStyle={'bold'}>
+                                Delicious Food i love it
                             </Text>
                         </CardFooter>
                     </CardBody>
             </Card>
-    )}
+    ) : (<div>
+        fetching data
+    </div>)}
 
     const cardComponents = Array.from({ length: 4 }, (_, index) => (
         <div key={index}>
