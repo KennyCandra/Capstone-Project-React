@@ -21,18 +21,38 @@ code {
   font-optical-sizing: auto;
   font-weight: 500;
   font-style: normal;
-  font-size: 30px;
+  font-size: 1rem;
+  color: #F4CE14;
+}
+
+.h2 {
+  font-family: "Markazi Text", serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+  font-size: 0.9rem;
+  color :white
+}
+
+.text{
+  font-family: "Karla", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 1rem;
+  color: white;
 }
 
 .BTN {
-  font-family: "Roboto";
-  color: black;
   background-color: #F4CE14;
-  border: 0;
   border-radius: 5px;
-  width: 200px;
-  height: 35px;
   font-size: 18px;
+}
+
+.BTN:hover {
+  background-color: #495E57;
+  color: white;
+  border: 1px solid black
 }
 
 .section {
@@ -44,15 +64,6 @@ code {
   color: white;
 }
 
-.activeSection {
-  text-decoration: underline;
-  color: grey;
-}
-
-.activeMobile {
-  background-color: #495E57;
-  width: 100%;
-}
 
 .Nav {
   margin-top: 9px;

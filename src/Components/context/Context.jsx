@@ -12,7 +12,7 @@ const Context = (props) => {
       setCartItem(storedCartItems);
     }
   }, []);
-  
+
   const addToCart = (dish) => {
 
     const findItem = cartItem.find((item) => item.id === dish.id)
@@ -51,20 +51,16 @@ const Context = (props) => {
   }
 
 
-     const removeItem = (id) => {
-      const updateCart = cartItem.map((item) => {
-        if(item.id === id) {
-          return null
-        }
-        console.log(item.id)
-      })
-        const filteredCart = updateCart.filter((item) => item !== null)
-        setCartItem(filteredCart)
-        localStorage.setItem('cartItems' , JSON.stringify(cartItem))
-      
-     }
+  const removeItem = (id) => {
+    const filteredCart = cartItem.filter((item) => item.id !== id);
+    setCartItem(filteredCart);
+    localStorage.setItem("cartItems", JSON.stringify(filteredCart));
+  };
 
-  const values = { addToCart, cartItem ,clearCart , increment , decrement , removeItem };
+ 
+
+  const values = { addToCart, cartItem ,clearCart , increment , decrement , removeItem};
+
 
   return (
     <ContextApp.Provider value={values}>{props.children}</ContextApp.Provider>

@@ -1,0 +1,8 @@
+@media (max-width: 767px) {
+    .menu-titles{
+        display: flex;
+        flex-wrap: wrap;
+        flex: 0 1 calc(33.33% -10px);
+        gap: 2%;
+    }
+}

@@ -1,0 +1,8 @@
+.dropDown-item:hover {
+    background-color: #f4f4f4;
+    transition: 2 all;
+}
+
+.drop-menu-content{
+    transition: all 0.3s ease-in-out;
+}

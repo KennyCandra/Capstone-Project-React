@@ -3,13 +3,15 @@ import restaurantChef from "../assets/photos/restaurant chef B.jpg"
 
 function About () {
     const [isLargerThan768] = useMediaQuery('(min-width: 768px)')
+
     return (
         <Stack justifyContent={'center'}
         pt={'20px'}
-         flexDir={isLargerThan768 ? 'row' : 'column'}>
-            <VStack alignItems={'baseline'}>
-                <Heading size={'h1'}>Little Lemon</Heading>
-                <Heading size={'h2'}>Chicago</Heading>
+         flexDir={isLargerThan768 ? 'row' : 'column'}
+         ml={'10%'}>
+            <VStack alignItems={'flex-start'}>
+                <Heading size={'h1'} fontSize={'2rem'} className="h1" color={'black'}>Little Lemon</Heading>
+                <Heading size={'h2'} className="h2" color={'grey'} fontSize={'1.5rem'}>Chicago</Heading>
                 <Box w={isLargerThan768 ? '370px' : '100%'} h={isLargerThan768 ? '260px' : '15%'}>
                 <Text>
                     Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit.
@@ -28,3 +30,8 @@ function About () {
 }
 
 export default About;
+
+
+
+
+     

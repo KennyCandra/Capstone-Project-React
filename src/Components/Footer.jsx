@@ -8,8 +8,10 @@ function Footer () {
             backgroundColor={'#DEDEDE'}
             p={'50px'}
             justifyContent={'center'}
-            pos={'relative'}
-            bottom={'auto'}
+            bottom={'0'}
+            as='footer'
+            mt={'auto'}
+            mb={'0'}
             >
             <Image src={Logo} />
             <VStack alignItems={'flex-start'} pl={'50px'}>

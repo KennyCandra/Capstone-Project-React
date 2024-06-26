@@ -1,5 +1,4 @@
 import { Button, Card, CardBody, HStack, Heading, Image, Stack, Text, VStack } from "@chakra-ui/react"
-import { useState } from "react"
 
 const MenuCard = ({title , img , price , description}) => {
     return  (
