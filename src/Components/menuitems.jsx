@@ -1,4 +1,4 @@
-import {Heading, VStack, HStack, Text, Box, Card, CardBody, Image, Button, Grid, GridItem, useMediaQuery} from "@chakra-ui/react"
+import {Heading, VStack, HStack, Text, Box, Card, CardBody, Image, Button, Grid, GridItem, useMediaQuery, Alert, AlertIcon} from "@chakra-ui/react"
 import { useContext, useEffect, useState } from "react"
 import data from "../assets/data/data.json"
 import { ContextApp } from "./context/Context"
@@ -13,8 +13,16 @@ function Menuitems () {
     const [selected , setSelected] = useState('0')
     const[selectedDish , setSelectedDish] =  useState('pizza')
     const {addToCart} = useContext(ContextApp)
-    const [isLargerThan768] = useMediaQuery('(min-width: 768px)')
     const navigate = useNavigate()
+    const [showAlert , setShowAlert] = useState(false)
+
+    useEffect(() => {
+        if(showAlert) {
+            setTimeout(() => {
+                setShowAlert(false)
+            }, 1000)
+        }
+    },[showAlert])
 
     const handleClick1 = () => {
         navigate('/checkout')
@@ -94,7 +102,7 @@ useEffect(() => {
                                            <Text display={'inline'} fontWeight={'bold'}>Spicy:</Text>  {dish.spicy ? <FaCheck color={'green'} /> : <FaXmark color={'red'} />}
                                          </HStack>
                                         <Button className='BTN' background={'#F4CE14'}  _hover={{ bg: '#EE9972' }}
-                                            onClick={()=> addToCart(dish)}
+                                            onClick={()=> addToCart(dish) }
                                             position={'absolute'}
                                             bottom={0}
                                             w={'100%'}>
@@ -106,6 +114,12 @@ useEffect(() => {
                             ))}
                 </Grid>
              </VStack>
+             <Button onClick={() => setShowAlert(!showAlert)}>Back</Button>
+
+                                        {showAlert && <Alert status='success' transition={'fade'} position={'absolute'} top={0}>
+                                            <AlertIcon />
+                                            Data uploaded to the server. Fire on!
+                                        </Alert>}
                     <Button m={'5%'} onClick={handleClick1} className='BTN' background={'#F4CE14'}  _hover={{ bg: '#EE9972' }}>Check Out</Button>
         </VStack>
         </>

@@ -64,32 +64,6 @@ input:invalid[focused = "true"] {
     border : 1px red solid
 }
 
-/* 
-@media (min-width: 768px) and (max-width: 992px) {
-    form{
-        width: 100%;
-        height: 25%;
-        align-items: center;
-        display: grid;
-        grid-template-columns: 50%;
-        gap: 10px;
-        justify-content: center;
-    }
-  } */
-
-
-  /* @media (min-width: 576px) and (max-width: 768px) {
-    form{
-        width: 100%;
-        height: 25%;
-        align-items: center;
-        display: grid;
-        grid-template-columns: 50%;
-        gap: 10px;
-        justify-content: center;
-    }
-  } */
-
   @media (max-width: 950px) {
     span{
         bottom: -1.5rem;

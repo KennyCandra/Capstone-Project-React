@@ -1,4 +1,4 @@
-import { Box, Button, Center, Grid, GridItem, HStack, Text, Textarea} from "@chakra-ui/react"
+import { Alert, AlertDescription, AlertIcon, AlertTitle, Box, Button, Center, Grid, GridItem, HStack, Text, Textarea} from "@chakra-ui/react"
 import { useContext, useEffect, useState } from "react"
 import { reservationFormContext } from "./context/ReservationFormContext"
 import PhotosComponent from "./PhotosComponent";
@@ -52,6 +52,7 @@ const ReservationFrom = () => {
 
     const [values , setValues] = useState(initialState)
     const [comment, setComment] = useState('')
+    const [showAlert , setShowAlert] = useState(false)
 
     const inputs = [
         {
@@ -104,8 +105,17 @@ const ReservationFrom = () => {
     const handleSubmit = (e) => {
         e.preventDefault()
         setComment('')
+        setValues(initialState)
         console.log(selected)
+        setShowAlert(true)
     }
+    useEffect(() => {
+        if(showAlert) {
+            setTimeout(() => {
+                setShowAlert(false)
+            }, 3000)
+        }
+    },[showAlert])
 
     const handleCommentChange = (e) =>  {
         const inputValue = e.target.value
@@ -180,10 +190,27 @@ const ReservationFrom = () => {
                     bg={'white'}>
                 </Textarea>
         </HStack>
-            
+
         </Box>
             <PhotosComponent />
             <Button w={'20%'} m={'auto'} mb={'20px'} onClick={handleSubmit} className='BTN' background={'#F4CE14'}  _hover={{ bg: '#EE9972' }}>Confirm Reservation</Button>
+            {showAlert && <Alert
+                status='success'
+                variant='subtle'
+                flexDirection='column'
+                alignItems='center'
+                justifyContent='center'
+                textAlign='center'
+                height='200px'
+                >
+                <AlertIcon boxSize='40px' mr={0} />
+                <AlertTitle mt={4} mb={1} fontSize='lg'>
+                    Application submitted!
+                </AlertTitle>
+                <AlertDescription maxWidth='sm'>
+                    Thanks for submitting your application. Our team will get back to you soon.
+                </AlertDescription>
+                </Alert>}
     </>
 }
 

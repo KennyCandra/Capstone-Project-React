@@ -18,7 +18,7 @@ function Navigation() {
     return location.path === path ? 'active' : '';
   }
   return (
-    <HStack justify='center' mb={'30px'} spacing={'5%'} flexWrap={"initial"}>
+    <HStack justify='center' align={'unset'} mb={'30px'} spacing={'5%'} mt={'2%'}>
         <Image src={logo} alt='logo' className="logo" width={"148px"} height={"40px"} />
         <ul className="Nav">
           {navigationItems.map((item) => (
