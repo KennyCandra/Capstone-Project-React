@@ -1,10 +1,9 @@
 import { Box, HStack, VStack } from "@chakra-ui/react"
 import { useEffect, useState } from "react"
-import { FaArrowDown } from "react-icons/fa6";
-import './DropDownMenu.css'
-import { FaClock } from "react-icons/fa6";
+import { FaArrowDown , FaClock  } from "react-icons/fa6";
 import { LiaGlassCheersSolid } from "react-icons/lia";
 import { IoPeople } from "react-icons/io5";
+import './DropDownMenu.css'
 
 
 
@@ -24,29 +23,30 @@ function DropDownMenu ({options, selected , setSelected , objKey }) {
     },[selected])
 
 
-    // useEffect(() => {
-    //     const handleClickOutside = (event) => {
-    //       if (
-    //         event.target.closest(".drop-menu-contiaer") === null &&
-    //         isActive === true
-    //       ) {
-    //         setIsActive(false);
-    //       }
-    //     };
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+          if (
+            !event.target.closest(".drop-menu-contianer")&& 
+            isActive
+          ) {
+            setIsActive(false);
+          }
+        };
 
-    //     document.addEventListener("click", handleClickOutside);
+        document.addEventListener("click", handleClickOutside);
 
-    //     return () => {
-    //       document.removeEventListener("click", handleClickOutside);
-    //     };
-    //   }, [isActive]);
+        return () => {
+          document.removeEventListener("click", handleClickOutside);
+        };
+      }, [isActive]);
 
     return (
-        <VStack className="drop-menu-cotianer"
+        <VStack className="drop-menu-contianer"
         gap={'0'}
         mb={'20px'}
         userSelect={'none'}
-        alignItems={'baseline'}>
+        alignItems={'baseline'}
+        position={'relative'}>
             <HStack onClick={e => {setIsActive(!isActive)}}
                     justifyContent={'space-between'}
                     alignContent={'center'}
@@ -70,27 +70,25 @@ function DropDownMenu ({options, selected , setSelected , objKey }) {
                 </Box>
                 {!isActive && <FaArrowDown />}
             </HStack>
-            <VStack className="drop-menu-content" 
-            position={'relative'}>
+            <VStack className="drop-menu-content"
+            position={'absolute'}
+            zIndex={'1'}
+            top={'100%'}>
             {isActive &&
-                <Box
-                    w='30vh'
-                    pos={'absolute'}
-                    m='auto'
-                >
-                    {options.map(options => (
+                <Box>
+                    {options.map(option => (
                         <Box className="dropDown-item"
-                        key={options}
+                        key={option}
                         onClick={e => {
                             setIsActive(false)
-                            setSelected({...selected,[objKey]:options})}}
+                            setSelected({...selected,[objKey]:option})}}
                             boxShadow='dark-lg'
                             bg={'white'}
                             w='30vh'
                             p={'8px'}
                             color={'black'}
                             cursor={'pointer'}>
-                        {options}
+                        {option}
                     </Box>
                     ))}
                 </Box>}

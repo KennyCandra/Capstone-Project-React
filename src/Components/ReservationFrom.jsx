@@ -103,11 +103,12 @@ const ReservationFrom = () => {
     }
 
     const handleSubmit = (e) => {
-        e.preventDefault()
-        setComment('')
-        setValues(initialState)
-        console.log(selected)
-        setShowAlert(true)
+        if(values !== initialState) {
+            e.preventDefault()
+            setComment('')
+            console.log(values)
+            setShowAlert(true)
+        }
     }
     useEffect(() => {
         if(showAlert) {
@@ -127,7 +128,6 @@ const ReservationFrom = () => {
 
 
     return <>
-    {console.log(reservationIconColor)}
     <Box className="booking-container"
     h={'60vh'}
     w={'100vw'}
@@ -173,7 +173,7 @@ const ReservationFrom = () => {
                     <GridItem pl={'2'} area={'date'}  display={'flex'} alignItems={'center'}>
                         {selected.reservationPlace === 'Delivery' &&(<MdOutlineDeliveryDining size={'50%'} color={reservationIconColor}/>)}
                         {selected.reservationPlace === 'Choose Place' &&(<MdOutlineDeliveryDining size={'50%'} color={reservationIconColor}/>)}
-                        {selected.reservationPlace === 'In door' || selected.reservationPlace === 'Out door' &&(<SiAirtable size={'50%'} color={reservationIconColor}/>)}
+                        {(selected.reservationPlace === 'In door' || selected.reservationPlace === 'Out door') &&(<SiAirtable size={'50%'} color={reservationIconColor}/>)}
                         {selected.reservationPlace !== 'Choose Place' &&(<div className="selected">{selected.reservationPlace}</div>)}
                     </GridItem>
             </Grid>
@@ -194,23 +194,7 @@ const ReservationFrom = () => {
         </Box>
             <PhotosComponent />
             <Button w={'20%'} m={'auto'} mb={'20px'} onClick={handleSubmit} className='BTN' background={'#F4CE14'}  _hover={{ bg: '#EE9972' }}>Confirm Reservation</Button>
-            {showAlert && <Alert
-                status='success'
-                variant='subtle'
-                flexDirection='column'
-                alignItems='center'
-                justifyContent='center'
-                textAlign='center'
-                height='200px'
-                >
-                <AlertIcon boxSize='40px' mr={0} />
-                <AlertTitle mt={4} mb={1} fontSize='lg'>
-                    Application submitted!
-                </AlertTitle>
-                <AlertDescription maxWidth='sm'>
-                    Thanks for submitting your application. Our team will get back to you soon.
-                </AlertDescription>
-                </Alert>}
+            {showAlert && window.alert(`Your Reservation has been Confirmed Mr/Ms ${values.phoneNumber}. We will contact you shortly`)}
     </>
 }
 
