@@ -107,7 +107,7 @@ const ReservationFrom = () => {
             e.preventDefault()
             setComment('')
             console.log(values)
-            setShowAlert(true)
+            alert('Your reservation has been submitted')
         }
     }
     useEffect(() => {
@@ -194,7 +194,6 @@ const ReservationFrom = () => {
         </Box>
             <PhotosComponent />
             <Button w={'20%'} m={'auto'} mb={'20px'} onClick={handleSubmit} className='BTN' background={'#F4CE14'}  _hover={{ bg: '#EE9972' }}>Confirm Reservation</Button>
-            {showAlert && window.alert(`Your Reservation has been Confirmed Mr/Ms ${values.phoneNumber}. We will contact you shortly`)}
     </>
 }
 

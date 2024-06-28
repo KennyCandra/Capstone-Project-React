@@ -60,7 +60,8 @@ useEffect(() => {
     return (
         <div >
             <Button position={'absolute'} right={['10px' , '10px' , '10px' , '10px']} top={['70px' , '70px' , '20px' , '20px']} ref={btnRef} onClick={onOpen}>
-                <AiOutlineShoppingCart style={{width : '20px' , height : '20px' , color : '#495E57'}}/>
+                <AiOutlineShoppingCart style={{width : '20px' , height : '20px' , color : '#495E57'}} />
+                <Text marginLeft={'10px'} fontSize={'0.8rem'} top={'1'} left='6' >{cartItem.length}</Text>
             </Button>
             <Drawer
             isOpen={isOpen}
@@ -78,7 +79,7 @@ useEffect(() => {
                                     <CardHeader>
                                         <HStack>
                                             <Image src={item.image} w='50%' h='20%'/>
-                                            <VStack>
+                                            <VStack alignItems={'stretch'}>
                                                 <Text fontWeight='bold'>{item.name}</Text>
                                                 <Text fontWeight='bold'>Qty : {item.count}</Text>
                                             </VStack>
@@ -86,8 +87,8 @@ useEffect(() => {
                                     </CardHeader>
                                     <CardBody>
                                         <HStack mb='3%'>
-                                            <Button w={'50%'} onClick={() => increment(item.id)} color='black'>+</Button>
-                                            <Button w={'50%'} onClick={() => decrement(item.id)} color='black'>-</Button>
+                                            <Button w={'50%'} onClick={() => increment(item.id)} className='BTN' background={'#F4CE14'}  _hover={{ bg: '#EE9972' }} color='black'>+</Button>
+                                            <Button w={'50%'} onClick={() => decrement(item.id)} className='BTN' background={'#F4CE14'}  _hover={{ bg: '#EE9972' }} color='black'>-</Button>
                                         </HStack>
                                         <Button w='100%' onClick={() => removeItem(item.id)} background={'red'} color='black'><Text fontSize='1em'>Remove</Text></Button>
                                     </CardBody>
@@ -97,11 +98,8 @@ useEffect(() => {
                     </DrawerBody>
 
                     <DrawerFooter>
-                        <Button variant={'outline'} onClick={onClose} m={'10px'} >
-                            close
-                        </Button>
-                        <Button color={"blue"} m={'10px'} onClick={handleClick} > Check Out</Button>
-                        <Button color={'black'} variant={'outline'} m={'10px'} onClick={() => clearCart()}>Clear Cart</Button>
+                        <Button m={'10px'} onClick={handleClick} className='BTN' background={'#F4CE14'}  _hover={{ bg: '#EE9972' }} > Check Out</Button>
+                        <Button color={'black'} variant={'outline'} m={'10px'}  _hover={{ bg: '#495E57' }} onClick={() => clearCart()}>Clear Cart</Button>
                     </DrawerFooter>
                 </DrawerContent>
             </Drawer>
