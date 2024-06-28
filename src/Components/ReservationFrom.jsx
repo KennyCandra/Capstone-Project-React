@@ -18,7 +18,7 @@ import { ContextApp } from "./context/Context";
 
 const ReservationFrom = () => {
     const {setCartItem} = useContext(ContextApp)
-    const {selected, beforeSelection , setSelected } = useContext(reservationFormContext)
+    const {selected, beforeSelection , setSelected , reservation , setReservation } = useContext(reservationFormContext)
     const [occasionIconColor , setOccasionIconColor] = useState('red')
     const [timeIconColor , setTimeIconColor] = useState('red')
     const [peopleIconColor, setPeopleIconColor] = useState('red')
@@ -118,13 +118,9 @@ const ReservationFrom = () => {
             }, 3000)
         }
     },[showAlert])
-
     const handleCommentChange = (e) =>  {
         const inputValue = e.target.value
         setComment(inputValue)
-        const wholeData = {...values,comment}
-        setValues(wholeData)
-        console.log(values)
     }
 
     useEffect(() => {
@@ -137,6 +133,14 @@ const ReservationFrom = () => {
     const handleSubmit = (e) => {
         e.preventDefault()
         if (Object.keys(values).every(key => values[key] !== initialState[key]) && Object.keys(selected).every(key => selected[key] !== beforeSelection[key])) {
+            
+            const newReservation = {
+                ...values,
+                ...selected,
+                comment: comment
+            }
+
+            setReservation((prev) => [...prev, newReservation])
             setComment('')
             setSelected(beforeSelection)
             setValues(initialState)
@@ -146,6 +150,7 @@ const ReservationFrom = () => {
             alert('Please fill all the required fields')
         }
     }
+
     return <>
     <Box className="booking-container"
     h={'60vh'}

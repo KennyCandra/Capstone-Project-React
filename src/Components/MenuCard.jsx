@@ -1,4 +1,6 @@
-import { Button, Card, CardBody, HStack, Heading, Image, Stack, Text, VStack } from "@chakra-ui/react"
+import { Box, Button, Card, CardBody, HStack, Heading, Image, Stack, Text, VStack } from "@chakra-ui/react"
+import { FaShoppingCart } from "react-icons/fa";
+
 
 const MenuCard = ({title , img , price , description}) => {
     return  (
@@ -29,12 +31,13 @@ const MenuCard = ({title , img , price , description}) => {
                     </CardBody>
                 </Stack>
             </HStack>
-            <Button variant={'solid'}
-                colorScheme={"yellow"}
-                w={"100%"}
-                borderRadius={'0'}>
-                    Add to Cart
-            </Button>
+            <Box>
+                <Button variant={'solid'}
+                    borderRadius={'0'}>
+                        <FaShoppingCart />
+                </Button>
+
+            </Box>
         </VStack>
 
         </Card>

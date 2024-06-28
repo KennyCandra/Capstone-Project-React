@@ -1,9 +1,11 @@
-import { createContext , useState } from "react";
+import { createContext , useEffect, useState } from "react";
 
 export const reservationFormContext = createContext(null)
 
 const ReservationFormContext = (props) => {
-    
+
+
+    const [reservation , setReservation] = useState([])
     const beforeSelection = {
         occasion : 'Choose Occasion',
         numberOfPeople : 'Choose Number',
@@ -13,7 +15,21 @@ const ReservationFormContext = (props) => {
 
     const [selected, setSelected] = useState(beforeSelection)
 
-    const values= {selected , setSelected , beforeSelection }
+    useEffect(() => {
+        const reservations = JSON.parse(localStorage.getItem("reservations"));
+        if (reservation) {
+          setReservation(reservation);
+        }
+      }, []);
+
+      
+      useEffect(() => {
+        localStorage.setItem("reservations", JSON.stringify(reservation));
+        
+})
+
+
+    const values= {selected , setSelected , beforeSelection , reservation , setReservation }
 
     return <reservationFormContext.Provider value={values}>{props.children}</reservationFormContext.Provider>
 }
