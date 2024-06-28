@@ -18,6 +18,7 @@ const Order = () => {
     }
 
     const [totalAmount , setTotalAmount] = useState(0)
+    const [count , setCount] = useState(0)
 
         useEffect(()=> {
             let total = 0
@@ -25,6 +26,14 @@ const Order = () => {
             setTotalAmount(total)
             console.log(cartItem)
         },[cartItem])
+
+        useEffect(()=> {
+            let count = 0
+            cartItem.forEach(item => count += Number(item.count))
+            setCount(count)
+            console.log(cartItem)
+        },[cartItem])
+
 
     return (
         <Box >
@@ -52,7 +61,7 @@ const Order = () => {
         ))}
             <Center m='1%'>
                 <VStack>
-                        <Text fontWeight='bold' display='block'>Subtotal({cartItem.length}items): {totalAmount}$</Text>
+                        <Text fontWeight='bold' display='block'>Subtotal({count}items): {totalAmount}$</Text>
                 <HStack>
                     <Button onClick={handleClick2} color='black'  className='BTN' background={'#F4CE14'}  _hover={{ bg: '#EE9972' }}>Continou Shopping</Button>
                     <Button onClick={handleClick} color='black'  className='BTN' background={'#F4CE14'}  _hover={{ bg: '#EE9972' }}>Proceed Ordering</Button>
