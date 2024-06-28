@@ -17,7 +17,7 @@ import { ContextApp } from "./context/Context";
 
 
 const ReservationFrom = () => {
-    const {setCartItem} = useContext(ContextApp)
+    const {cartItem ,setCartItem} = useContext(ContextApp)
     const {selected, beforeSelection , setSelected , reservation , setReservation } = useContext(reservationFormContext)
     const [occasionIconColor , setOccasionIconColor] = useState('red')
     const [timeIconColor , setTimeIconColor] = useState('red')
@@ -137,6 +137,7 @@ const ReservationFrom = () => {
             const newReservation = {
                 ...values,
                 ...selected,
+                ...cartItem,
                 comment: comment
             }
 
