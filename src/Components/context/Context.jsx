@@ -59,7 +59,7 @@ const Context = (props) => {
 
  
 
-  const values = { addToCart, cartItem ,clearCart , increment , decrement , removeItem};
+  const values = { addToCart, cartItem ,clearCart , increment , decrement , removeItem ,setCartItem};
 
 
   return (

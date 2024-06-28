@@ -10,12 +10,14 @@ import { MdOutlineDeliveryDining } from "react-icons/md";
 import { SiAirtable } from "react-icons/si";
 import './FormInput.css'
 import Submission from "./Submission";
+import { ContextApp } from "./context/Context";
 
 
 
 
 
 const ReservationFrom = () => {
+    const {setCartItem} = useContext(ContextApp)
     const {selected, beforeSelection , setSelected } = useContext(reservationFormContext)
     const [occasionIconColor , setOccasionIconColor] = useState('red')
     const [timeIconColor , setTimeIconColor] = useState('red')
@@ -139,6 +141,7 @@ const ReservationFrom = () => {
             setSelected(beforeSelection)
             setValues(initialState)
             setDisplay(true)
+            setCartItem([])
         } else {
             alert('Please fill all the required fields')
         }
