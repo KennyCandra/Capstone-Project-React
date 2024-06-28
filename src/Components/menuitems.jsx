@@ -87,7 +87,7 @@ function Menuitems () {
                                         className='BTN' 
                                         background={addedToCart[dish.id] ? '#495E57' : '#F4CE14'}
                                         color={addedToCart[dish.id] ? 'white' : 'black'}
-                                        _hover={{ bg: '#EE9972' }}
+                                        _hover={addedToCart[dish.id] ? {'background': '#495E57'} : {'background': '#EE9972'}}
                                         onClick={() => handleAddToCart(dish)}
                                         position={'absolute'}
                                         left={'75%'}
