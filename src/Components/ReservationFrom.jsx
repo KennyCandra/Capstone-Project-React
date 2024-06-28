@@ -102,14 +102,7 @@ const ReservationFrom = () => {
         setValues({...values,[e.target.name]: e.target.value})
     }
 
-    const handleSubmit = (e) => {
-        if(values !== initialState) {
-            e.preventDefault()
-            setComment('')
-            console.log(values)
-            alert('Your reservation has been submitted')
-        }
-    }
+  
     useEffect(() => {
         if(showAlert) {
             setTimeout(() => {
@@ -126,7 +119,17 @@ const ReservationFrom = () => {
         console.log(values)
     }
 
-
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        if (Object.keys(values).every(key => values[key] !== initialState[key])) {
+            setComment('')
+            console.log(values)
+            setValues(initialState)
+            alert(`Your reservation has been submitted ${values.firstName}`)
+        } else {
+            alert('Please fill all the required fields')
+        }
+    }
     return <>
     <Box className="booking-container"
     h={'60vh'}
