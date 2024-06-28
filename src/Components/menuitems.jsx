@@ -5,6 +5,7 @@ import { ContextApp } from "./context/Context"
 import { FaCheck ,FaXmark  } from "react-icons/fa6";
 import { useNavigate } from "react-router-dom";
 import './menuitems.css'
+import './Submission.css'
 let menu = Object.getOwnPropertyNames(data)
 
 

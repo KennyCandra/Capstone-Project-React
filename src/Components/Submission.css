@@ -4,7 +4,7 @@ body.active-submission {
 
 .submission, .overlay {
     width: 100vw;
-    height: 100h;
+    height: 100vh;
     top: 0;
     bottom: 0;
     left: 0;
@@ -13,12 +13,14 @@ body.active-submission {
 }
 
 .overlay{
-    background-color: blanchedalmond;
+    background: rgba(49,49,49,0.8);
 }
 
 .submission-box{
     position: absolute;
-    top: 40%;
-    left: 40%;
+    top: 50%;
+    left: 50%;
     border-radius: 5%;
+    transform: translate(-50%, -50%);
+    background: #f1f1f1;
 }

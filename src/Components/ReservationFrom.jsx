@@ -140,8 +140,8 @@ const ReservationFrom = () => {
             setComment('')
             setSelected(beforeSelection)
             setValues(initialState)
-            setDisplay(true)
             setCartItem([])
+            setDisplay(true)
         } else {
             alert('Please fill all the required fields')
         }
