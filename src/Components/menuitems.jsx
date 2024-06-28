@@ -91,6 +91,7 @@ function Menuitems () {
                                         onClick={() => handleAddToCart(dish)}
                                         position={'absolute'}
                                         left={'75%'}
+                                        top={'5px'}
                                     >
                                         <Box>
                                             <Text display={'inline'} position={"absolute"} top={'0'} left={'45%'}>
