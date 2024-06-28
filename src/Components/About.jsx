@@ -1,10 +1,12 @@
 import { Box,Heading,Image,Stack,Text, VStack, useMediaQuery } from "@chakra-ui/react";
 import restaurantChef from "../assets/photos/restaurant chef B.jpg"
 
+
 function About () {
     const [isLargerThan768] = useMediaQuery('(min-width: 768px)')
 
     return (
+        <>
         <Stack justifyContent={'center'}
         pt={'20px'}
          flexDir={isLargerThan768 ? 'row' : 'column'}
@@ -26,6 +28,9 @@ function About () {
                 pb={'20px'}
                 />
         </Stack>
+
+        
+        </>
     )
 }
 

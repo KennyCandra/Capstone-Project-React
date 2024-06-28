@@ -1,4 +1,4 @@
-import { Alert, AlertDescription, AlertIcon, AlertTitle, Box, Button, Center, Grid, GridItem, HStack, Text, Textarea} from "@chakra-ui/react"
+import { Box, Button, Center, Grid, GridItem, HStack, Textarea} from "@chakra-ui/react"
 import { useContext, useEffect, useState } from "react"
 import { reservationFormContext } from "./context/ReservationFormContext"
 import PhotosComponent from "./PhotosComponent";
@@ -9,14 +9,21 @@ import { IoPeople  } from "react-icons/io5";
 import { MdOutlineDeliveryDining } from "react-icons/md";
 import { SiAirtable } from "react-icons/si";
 import './FormInput.css'
+import Submission from "./Submission";
+
+
+
 
 
 const ReservationFrom = () => {
-    const {selected } = useContext(reservationFormContext)
+    const {selected, beforeSelection , setSelected } = useContext(reservationFormContext)
     const [occasionIconColor , setOccasionIconColor] = useState('red')
     const [timeIconColor , setTimeIconColor] = useState('red')
     const [peopleIconColor, setPeopleIconColor] = useState('red')
     const [reservationIconColor , setReservationIconColor] = useState('red')
+    const [comment, setComment] = useState('')
+    const [showAlert , setShowAlert] = useState(false)
+    const [display , setDisplay] = useState(false)
 
     const updateIcon = (condition , setIconState , validColor , inValidColor) => {
         if(condition){
@@ -51,8 +58,7 @@ const ReservationFrom = () => {
     }
 
     const [values , setValues] = useState(initialState)
-    const [comment, setComment] = useState('')
-    const [showAlert , setShowAlert] = useState(false)
+
 
     const inputs = [
         {
@@ -119,13 +125,20 @@ const ReservationFrom = () => {
         console.log(values)
     }
 
+    useEffect(() => {
+        if(display){
+            document.body.classList.add('active-submission')
+        } else {
+            document.body.classList.remove('active-submission')}
+    })
+
     const handleSubmit = (e) => {
         e.preventDefault()
-        if (Object.keys(values).every(key => values[key] !== initialState[key])) {
+        if (Object.keys(values).every(key => values[key] !== initialState[key]) && Object.keys(selected).every(key => selected[key] !== beforeSelection[key])) {
             setComment('')
-            console.log(values)
+            setSelected(beforeSelection)
             setValues(initialState)
-            alert(`Your reservation has been submitted ${values.firstName}`)
+            setDisplay(true)
         } else {
             alert('Please fill all the required fields')
         }
@@ -195,10 +208,12 @@ const ReservationFrom = () => {
         </HStack>
 
         </Box>
+            <Button w={'20%'} m={'auto'} mb={'20px'} onClick={handleSubmit} mt={'2%'} className='BTN' background={'#F4CE14'}  _hover={{ bg: '#EE9972' }}>Confirm Reservation</Button>
+            {display && <Submission display={display} setDisplay={setDisplay} />}
             <PhotosComponent />
-            <Button w={'20%'} m={'auto'} mb={'20px'} onClick={handleSubmit} className='BTN' background={'#F4CE14'}  _hover={{ bg: '#EE9972' }}>Confirm Reservation</Button>
     </>
 }
 
 export default ReservationFrom
+
 

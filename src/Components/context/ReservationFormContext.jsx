@@ -4,14 +4,16 @@ export const reservationFormContext = createContext(null)
 
 const ReservationFormContext = (props) => {
     
-    const [selected, setSelected] = useState({
+    const beforeSelection = {
         occasion : 'Choose Occasion',
         numberOfPeople : 'Choose Number',
         time : 'Choose Time',
         reservationPlace : 'Choose Place'
-    })
+    }
 
-    const values= {selected , setSelected }
+    const [selected, setSelected] = useState(beforeSelection)
+
+    const values= {selected , setSelected , beforeSelection }
 
     return <reservationFormContext.Provider value={values}>{props.children}</reservationFormContext.Provider>
 }
