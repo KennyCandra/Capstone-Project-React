@@ -116,7 +116,7 @@ useEffect(() => {
              </VStack>
              <Button onClick={() => setShowAlert(!showAlert)}>Back</Button>
 
-                                        {showAlert && <Alert status='success' transition={'fade'} position={'absolute'} top={0}>
+                                {showAlert && <Alert status='success' transition={'fade'} position={'absolute'} top={0}>
                                             <AlertIcon />
                                             Data uploaded to the server. Fire on!
                                         </Alert>}
