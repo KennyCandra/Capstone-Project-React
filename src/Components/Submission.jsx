@@ -10,7 +10,7 @@ const Submission = ({display , setDisplay}) => {
     return (
         <Box className="submission">
             <Box className="overlay">
-                <Box className="submission-box" w={'50%'} h={'45vh'} position={'relative'}>
+                <Box className="submission-box" w={'auto'} h={'45vh'} position={'relative'}>
                     <VStack>
                         <Button position={'absolute'} top={'2%'} right={'2%'} onClick={handleClick} p={'0'}><FaXmark /></Button>
                         <IoMdCheckmarkCircleOutline  color="green" size={'20vh'} p={'0'} />

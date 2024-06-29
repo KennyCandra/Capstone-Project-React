@@ -1,4 +1,4 @@
-import {Heading, VStack, HStack, Text, Box, Card, CardBody, Image, Button, Grid, GridItem, Alert, AlertIcon} from "@chakra-ui/react"
+import {Heading, VStack, HStack, Text, Box, Card, CardBody, Image, Button, Grid, GridItem} from "@chakra-ui/react"
 import { useContext, useEffect, useState } from "react"
 import data from "../assets/data/data.json"
 import { ContextApp } from "./context/Context"
@@ -8,6 +8,7 @@ import './menuitems.css'
 import './Submission.css'
 import { IoCartOutline } from "react-icons/io5";
 import { GoPlus } from "react-icons/go";
+import AddedItem from "./AddedItem";
 
 
 let menu = Object.getOwnPropertyNames(data)
@@ -18,19 +19,29 @@ function Menuitems () {
     const {addToCart} = useContext(ContextApp)
     const navigate = useNavigate()
     const [addedToCart, setAddedToCart] = useState({})
-    const [hover , setHover] = useState(false)
+    const [newDish , setNewDish ] = useState([])
+    const [display , setDisplay] = useState(false)
 
     const handleClick = (item, key) => {
         setSelectedDish(item)
         setSelected(key)
     }
 
+    useEffect(() => {
+        if(display){
+            document.body.classList.add('active-added')
+        } else {
+            document.body.classList.remove('active-added')}
+    })
+
     const handleCheckout = () => {
         navigate('/checkout')
     }
 
     const handleAddToCart = (dish) => {
+        setDisplay(true)
         addToCart(dish)
+        setNewDish(dish)
         setAddedToCart(prev => ({
             ...prev,
             [dish.id]: true 
@@ -87,36 +98,23 @@ function Menuitems () {
                                 />
                                 <CardBody position={'relative'} p={0}>
                                     <Button
-                                        onMouseOver={e => {  if(addToCart[dish.id]) {
-                                            e.target.style.left = '50%';
-                                            e.target.style.width = '100px';
-                                        } else {
-                                            return null
-                                        }
-                                        }}
-                                        onMouseOut={e => {
-                                            e.target.style.left = '80%';
-                                            e.target.style.width = '30px';
-                                        }}
                                         className='BTN CartBTN'
-                                        background={addedToCart[dish.id] ? '#495E57' : '#F4CE14'}
-                                        color={addedToCart[dish.id] ? 'white' : 'black'}
-                                        _hover={addedToCart[dish.id] ? {'background': '#495E57'} : {'background': '#EE9972'}}
+                                        background={'#F4CE14'}
+                                        color={'black'}
+                                        _hover={ {'background': '#EE9972'}}
                                         onClick={() => handleAddToCart(dish)}
                                         position={'absolute'}
                                         left={'80%'}
                                         w={'30px'}
                                     >
-                                        {addedToCart[dish.id] && <Button size={'30%'} p={'5%'}>+</Button>}
-                                        {addedToCart[dish.id] && <Text>{dish.count}</Text>}
-                                        {addedToCart[dish.id] && <Button size={'30%'} p={'5%'}>-</Button>}
                                         <Box>
                                             <Text display={'inline'} position={"absolute"} top={'0'} left={'45%'}>
-                                                {addedToCart[dish.id] ? dish.count : <GoPlus />}
+                                                 <GoPlus />
                                             </Text>
                                             <IoCartOutline size={'23px'}/>
                                         </Box>
                                     </Button>
+                                        {display && <AddedItem display={display} setDisplay={setDisplay} newDish={newDish} setNewDish={setNewDish}/>}
                                     <Text
                                         as='h2'
                                         fontWeight={'bold'}

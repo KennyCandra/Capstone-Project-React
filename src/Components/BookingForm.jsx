@@ -86,7 +86,7 @@ function BookingForm() {
                 </Grid>
             </Box>
 
-            <Button onClick={() => { navigate('/reservation') }} w={'10%'} m={'auto'} mt={'2%'} mb={'10px'} className='BTN' background={'#F4CE14'} _hover={{ bg: '#EE9972' }}>Reserve</Button>
+            <Button onClick={() => { navigate('/reservation') }} w={'auto'} m={'auto'} mt={'2%'} mb={'10px'} className='BTN' background={'#F4CE14'} _hover={{ bg: '#EE9972' }}>Reserve</Button>
             <PhotosComponent />
 
         </>

@@ -11,9 +11,7 @@ import { SiAirtable } from "react-icons/si";
 import './FormInput.css'
 import Submission from "./Submission";
 import { ContextApp } from "./context/Context";
-
-
-
+import { BiMessageAltError } from "react-icons/bi";
 
 
 const ReservationFrom = () => {
@@ -181,24 +179,29 @@ const ReservationFrom = () => {
                 gridTemplateRows={'25% 25%'}
                 justifyContent={'center'}
                 >
-                    <GridItem pl={'2'} area={'occasion'} display={'flex'} alignItems={'center'}>
-                         <LiaGlassCheersSolid size={'50%'}  color={occasionIconColor}/>
+
+                    <GridItem pl={'2'} area={'occasion'} display={'flex'} alignItems={'center'} position={'relative'}>
+                        {selected.occasion === "Choose Occasion" &&(<Box position={'absolute'} top={'0'} left={'22%'}><BiMessageAltError size={'15%'} color="red"/></Box>)}
+                        <LiaGlassCheersSolid size={'50%'}  color={occasionIconColor}/>
                         {selected.occasion !== 'Choose Occasion' &&(<div className="selected">{selected.occasion}</div>)}
                     </GridItem>
 
-                    <GridItem pl={'2'} area={'people'} display={'flex'} alignItems={'center'}>
+                    <GridItem pl={'2'} area={'people'} display={'flex'} alignItems={'center'} position={'relative'}>
+                        {selected.numberOfPeople === "Choose Number" &&(<Box position={'absolute'} top={'0'} left={'23%'}><BiMessageAltError size={'15%'} color="red"/></Box>)}
                         <IoPeople size={'50%'} color={peopleIconColor}/>
                         {selected.numberOfPeople !== 'Choose Number' &&(<div className="selected">{selected.numberOfPeople} Diners</div>)}
                     </GridItem>
 
-                    <GridItem pl={'2'} area={'time'}  display={'flex'} alignItems={'center'}>
+                    <GridItem pl={'2'} area={'time'}  display={'flex'} alignItems={'center'} position={'relative'}>
+                        {selected.time === "Choose Time" &&(<Box position={'absolute'} top={'0'} left={'24%'}><BiMessageAltError size={'10%'} color="red"/></Box>)}
                         <FaClock size={'50%'} color={timeIconColor}/>
                         {selected.time !== 'Choose Time' &&(<div className="selected">{selected.time}</div>)}
                     </GridItem>
-                    <GridItem pl={'2'} area={'date'}  display={'flex'} alignItems={'center'}>
-                        {selected.reservationPlace === 'Delivery' &&(<MdOutlineDeliveryDining size={'50%'} color={reservationIconColor}/>)}
-                        {selected.reservationPlace === 'Choose Place' &&(<MdOutlineDeliveryDining size={'50%'} color={reservationIconColor}/>)}
-                        {(selected.reservationPlace === 'In door' || selected.reservationPlace === 'Out door') &&(<SiAirtable size={'50%'} color={reservationIconColor}/>)}
+                    <GridItem pl={'2'} area={'date'}  display={'flex'} alignItems={'center'} position={'relative'}>
+                        {selected.reservationPlace === 'Choose Place' &&(<Box position={'absolute'} top={'0'} left={'26%'}><BiMessageAltError size={'15%'} color="red"/></Box>)}
+                        {selected.reservationPlace === 'Delivery' &&(<MdOutlineDeliveryDining size={'60%'} color={reservationIconColor}/>)}
+                        {selected.reservationPlace === 'Choose Place' &&(<MdOutlineDeliveryDining size={'60%'} color={reservationIconColor}/>)}
+                        {(selected.reservationPlace === 'In door' || selected.reservationPlace === 'Out door') &&(<SiAirtable size={'60%'} color={reservationIconColor}/>)}
                         {selected.reservationPlace !== 'Choose Place' &&(<div className="selected">{selected.reservationPlace}</div>)}
                     </GridItem>
             </Grid>
@@ -217,7 +220,7 @@ const ReservationFrom = () => {
         </HStack>
 
         </Box>
-            <Button w={'20%'} m={'auto'} mb={'20px'} onClick={handleSubmit} mt={'2%'} className='BTN' background={'#F4CE14'}  _hover={{ bg: '#EE9972' }}>Confirm Reservation</Button>
+            <Button w={'auto'} m={'auto'} mb={'20px'} onClick={handleSubmit} mt={'2%'} className='BTN' background={'#F4CE14'}  _hover={{ bg: '#EE9972' }}>Confirm Reservation</Button>
             {display && <Submission display={display} setDisplay={setDisplay} />}
             <PhotosComponent />
     </>

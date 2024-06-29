@@ -1,8 +1,8 @@
-body.active-submission {
+body.active-added {
     overflow-y: hidden;
 }
 
-.submission, .overlay {
+.added, .overlay-added {
     width: 100vw;
     height: 100vh;
     top: 0;
@@ -12,11 +12,11 @@ body.active-submission {
     position: fixed;
 }
 
-.overlay{
-    background: rgba(49,49,49,0.8);
+.overlay-added{
+    background: rgba(49,49,49,0.05);
 }
 
-.submission-box{
+.submission-added{
     position: absolute;
     top: 50%;
     left: 50%;
