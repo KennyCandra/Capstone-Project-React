@@ -7,6 +7,8 @@ import { useNavigate } from "react-router-dom";
 import './menuitems.css'
 import './Submission.css'
 import { IoCartOutline } from "react-icons/io5";
+import { GoPlus } from "react-icons/go";
+
 
 let menu = Object.getOwnPropertyNames(data)
 
@@ -16,6 +18,7 @@ function Menuitems () {
     const {addToCart} = useContext(ContextApp)
     const navigate = useNavigate()
     const [addedToCart, setAddedToCart] = useState({})
+    const [hover , setHover] = useState(false)
 
     const handleClick = (item, key) => {
         setSelectedDish(item)
@@ -83,19 +86,33 @@ function Menuitems () {
                                     m={'auto'}
                                 />
                                 <CardBody position={'relative'} p={0}>
-                                    <Button 
-                                        className='BTN' 
+                                    <Button
+                                        onMouseOver={e => {  if(addToCart[dish.id]) {
+                                            e.target.style.left = '50%';
+                                            e.target.style.width = '100px';
+                                        } else {
+                                            return null
+                                        }
+                                        }}
+                                        onMouseOut={e => {
+                                            e.target.style.left = '80%';
+                                            e.target.style.width = '30px';
+                                        }}
+                                        className='BTN CartBTN'
                                         background={addedToCart[dish.id] ? '#495E57' : '#F4CE14'}
                                         color={addedToCart[dish.id] ? 'white' : 'black'}
                                         _hover={addedToCart[dish.id] ? {'background': '#495E57'} : {'background': '#EE9972'}}
                                         onClick={() => handleAddToCart(dish)}
                                         position={'absolute'}
-                                        left={'75%'}
-                                        top={'5px'}
+                                        left={'80%'}
+                                        w={'30px'}
                                     >
+                                        {addedToCart[dish.id] && <Button size={'30%'} p={'5%'}>+</Button>}
+                                        {addedToCart[dish.id] && <Text>{dish.count}</Text>}
+                                        {addedToCart[dish.id] && <Button size={'30%'} p={'5%'}>-</Button>}
                                         <Box>
                                             <Text display={'inline'} position={"absolute"} top={'0'} left={'45%'}>
-                                                {addedToCart[dish.id] ? '1' : ''}
+                                                {addedToCart[dish.id] ? dish.count : <GoPlus />}
                                             </Text>
                                             <IoCartOutline size={'23px'}/>
                                         </Box>
@@ -104,10 +121,11 @@ function Menuitems () {
                                         as='h2'
                                         fontWeight={'bold'}
                                         mt={'10px'}
-                                        pl={'2%'}>
+                                        pl={'2%'}
+                                        w='50%'>
                                         {dish.name}
                                     </Text>
-                                    <Text 
+                                    <Text
                                         as={'h1'}
                                         fontWeight={'bold'}
                                         mt={'5px'}

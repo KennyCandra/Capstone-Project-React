@@ -18,7 +18,7 @@ import { ContextApp } from "./context/Context";
 
 const ReservationFrom = () => {
     const {cartItem ,setCartItem} = useContext(ContextApp)
-    const {selected, beforeSelection , setSelected , reservation , setReservation } = useContext(reservationFormContext)
+    const {selected, beforeSelection , setSelected ,  setReservation } = useContext(reservationFormContext)
     const [occasionIconColor , setOccasionIconColor] = useState('red')
     const [timeIconColor , setTimeIconColor] = useState('red')
     const [peopleIconColor, setPeopleIconColor] = useState('red')
@@ -154,8 +154,8 @@ const ReservationFrom = () => {
 
     return <>
     <Box className="booking-container"
-    h={'60vh'}
-    w={'100vw'}
+    height='550px'
+    width='100vw'
     background={'#495E57'}
     m={'auto'}>
         <Center>

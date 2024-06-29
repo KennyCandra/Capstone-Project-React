@@ -49,7 +49,7 @@ function BookingForm() {
     return (
         <>
             <Box className="booking-container"
-                h={'50vh'}
+                h={'500px'}
                 w={'100vw'}
                 background={'#495E57'}
             >

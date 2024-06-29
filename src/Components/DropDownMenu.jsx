@@ -54,8 +54,8 @@ function DropDownMenu({ options, selected, setSelected, objKey, isActive, onTogg
                 boxShadow='dark-lg'
                 bg={selectedColor}
                 color={fontColor}
-                w='30vh'
-                h={'10wh'}
+                w='14.75vw'
+                h={'40px'}
                 pr={'10px'}
                 pl={'10px'}
                 cursor={'pointer'}
@@ -89,7 +89,7 @@ function DropDownMenu({ options, selected, setSelected, objKey, isActive, onTogg
                                 }}
                                 boxShadow='dark-lg'
                                 bg={'white'}
-                                w='30vh'
+                                w='14.75vw'
                                 p={'8px'}
                                 color={'black'}
                                 cursor={'pointer'}
