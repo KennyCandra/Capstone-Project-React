@@ -77,7 +77,7 @@ const Order = () => {
                         <Text fontWeight='bold' display='block'>Subtotal({count}items): {totalAmount}$</Text>
                 <HStack>
                     <Button onClick={handleClick2} color='black'  className='BTN' background={'#F4CE14'}  _hover={{ bg: '#EE9972' }}>Continou Shopping</Button>
-                    {!empty &&<Button onClick={handleClick} color='black'  className='BTN' background={'#F4CE14'}  _hover={{ bg: '#EE9972' }}>Proceed Ordering</Button>}
+                    {empty &&<Button onClick={handleClick} color='black'  className='BTN' background={'#F4CE14'}  _hover={{ bg: '#EE9972' }}>Proceed Ordering</Button>}
                 </HStack>
                 </VStack>
             </Center>

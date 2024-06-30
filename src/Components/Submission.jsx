@@ -1,11 +1,15 @@
 import { Box, Button,Text, VStack } from "@chakra-ui/react"
 import { FaXmark } from "react-icons/fa6"
 import { IoMdCheckmarkCircleOutline } from "react-icons/io"
+import { useNavigate } from "react-router-dom"
 
 const Submission = ({display , setDisplay}) => {
     const handleClick = () => {
         setDisplay(false)
+        navigate('/')
     }
+
+    const navigate = useNavigate()
 
     return (
         <Box className="submission">
