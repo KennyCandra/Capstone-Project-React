@@ -1,13 +1,13 @@
 import { Box, Button,HStack,Image,Text, VStack } from "@chakra-ui/react"
 import { useNavigate } from "react-router-dom"
 import './AddedItem.css'
+import { useEffect } from "react"
 
 const AddedItem = ({display , setDisplay , newDish , setNewDish}) => {
     const handleClick = () => {
         setDisplay(false)
         setNewDish([])
-    }   
-
+    }
     const navigation = useNavigate()
     return (
         <Box className="added">
@@ -20,7 +20,7 @@ const AddedItem = ({display , setDisplay , newDish , setNewDish}) => {
                             <Text>Added to your Cart Succesfully</Text>
                             <HStack>
                                 <Button onClick={handleClick} className='BTN' background={'#F4CE14'}  _hover={{ bg: '#EE9972' }}>Continou Shopping</Button>
-                                <Button onClick={() => navigation('/checkout')} className='BTN' background={'#F4CE14'}  _hover={{ bg: '#EE9972' }}>Check Out</Button>
+                                <Button onClick={() => navigation('/checkout') &&  document.body.classList.remove('active-added')} className='BTN' background={'#F4CE14'}  _hover={{ bg: '#EE9972' }}>Check Out</Button>
                             </HStack>
                         </VStack>
                     </HStack>

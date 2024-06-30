@@ -26,7 +26,7 @@ function Footer () {
             <VStack pl={'50px'}>
                 <Heading size={'h3'}>Social Media Links</Heading>
                 <List>
-                    <ListItem><a href="facebook.com">Facebook</a></ListItem>
+                    <ListItem><a href="https://www.facebook.com/ahmed.abderhman.14" target="_blank" rel="noreferrer">Facebook</a></ListItem>
                     <ListItem><a href="x.com">Twitter</a></ListItem>
                     <ListItem><a href="instagram.com ">Instagram</a> </ListItem>
                 </List>

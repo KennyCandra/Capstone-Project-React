@@ -8,6 +8,11 @@ const Order = () => {
     const {cartItem , increment , decrement , removeItem } = useContext(ContextApp)
     const [empty , setEmpty] = useState(false)
 
+    useEffect(()=> {
+        document.body.classList.remove('active-added')
+    }
+)
+
     const navigation = useNavigate()
 
     const handleClick = () => {
