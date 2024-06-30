@@ -27,8 +27,8 @@ function Footer () {
                 <Heading size={'h3'}>Social Media Links</Heading>
                 <List>
                     <ListItem><a href="https://www.facebook.com/ahmed.abderhman.14" target="_blank" rel="noreferrer">Facebook</a></ListItem>
-                    <ListItem><a href="https://twitter.com/Kenny_Candra">Twitter</a></ListItem>
-                    <ListItem><a href="https://www.instagram.com/ahmed_abderhman14/ ">Instagram</a> </ListItem>
+                    <ListItem><a href="https://twitter.com/Kenny_Candra" target="_blank" rel="noreferrer">Twitter</a></ListItem>
+                    <ListItem><a href="https://www.instagram.com/ahmed_abderhman14/ " target="_blank" rel="noreferrer">Instagram</a> </ListItem>
                 </List>
             </VStack>
         </Stack>
