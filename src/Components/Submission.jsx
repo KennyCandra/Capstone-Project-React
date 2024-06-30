@@ -4,10 +4,17 @@ import { IoMdCheckmarkCircleOutline } from "react-icons/io"
 import { useNavigate } from "react-router-dom"
 
 const Submission = ({display , setDisplay}) => {
+
+    const removeClass = () => {
+        document.body.classList.remove('active-submission')
+    }
     const handleClick = () => {
         setDisplay(false)
         navigate('/')
+        removeClass()
     }
+
+    
 
     const navigate = useNavigate()
 
